@@ -81,6 +81,9 @@ ul {
     width: 50%;
     margin-bottom: 30px;
   }
+  .footer {
+    height: 500px;
+  }
 }
 @media (max-width: 574px) {
   .footer-col {

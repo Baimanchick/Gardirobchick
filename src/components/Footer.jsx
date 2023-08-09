@@ -13,13 +13,13 @@ function Footer() {
               <h4>Помощь</h4>
               <ul>
                 <li>
-                  <a href="#">Корзина</a>
+                  <a href="/cart">Корзина</a>
                 </li>
                 <li>
-                  <a href="#">Товары</a>
+                  <a href="/products">Товары</a>
                 </li>
                 <li>
-                  <a href="#">Домой</a>
+                  <a href="/">Домой</a>
                 </li>
               </ul>
             </div>

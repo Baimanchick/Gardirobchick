@@ -7,11 +7,18 @@ import CheckroomIcon from "@mui/icons-material/Checkroom";
 import check from "../css/images/1.jpg";
 import Footer from "../components/Footer";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { useNavigate } from "react-router-dom";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 function HomePage() {
+  const naivigate = useNavigate();
+
   return (
     <>
       <div className="main-content">
+        {/*  */}
+
         <header>
           <nav className="navbar">
             <div className="container-navbar">
@@ -22,10 +29,14 @@ function HomePage() {
                 type="search"
               />
               <ul className="navigation">
-                <ShoppingCartIcon />
-                <li className="navigation__item">Корзина</li>
-                <CheckroomIcon />
-                <li className="navigation__item">Товары</li>
+                <ShoppingCartIcon onClick={() => naivigate("/cart")} />
+                <li className="navigation__item">
+                  <a href="/cart">Корзина</a>
+                </li>
+                <CheckroomIcon onClick={() => naivigate("/products")} />
+                <li className="navigation__item">
+                  <a href="/products">Товары</a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -35,17 +46,21 @@ function HomePage() {
 
           <div className="second-navbar">
             <div className="main-thing">
-              <div className="main-title">Gардеробчик</div>
-              <img src={logo} className="main-logo" />
+              <div className="main-title">
+                <a href="/">Gардеробчик</a>
+              </div>
+              <img
+                onClick={() => naivigate("/")}
+                src={logo}
+                className="main-logo"
+              />
             </div>
 
             <ul className="second-navigation">
-              <li className="second-navigation__item">Платье</li>
-              <li className="second-navigation__item">Блуска</li>
-              <li className="second-navigation__item">Юбки</li>
-              <li className="second-navigation__item">Топик</li>
-              <li className="second-navigation__item">Футболки</li>
-              <li className="second-navigation__item">Сумки</li>
+              <li className="second-navigation__itemm">
+                {" "}
+                <a href="tel:+996505239903">0505 239903</a>{" "}
+              </li>
             </ul>
           </div>
 
@@ -54,10 +69,17 @@ function HomePage() {
           </div>
         </header>
 
+        <div className="fashion">Топ товары</div>
+
+        {/*  */}
         <main class="container">
-          <section class="card">
+          <section onClick={() => naivigate("/details")} class="card">
             <div class="product-image">
-              <img src={check} alt="OFF-white Red Edition" draggable="false" />
+              <img
+                src="https://isabelgarcia.by/wp-content/uploads/2020/12/fiolet_by_1308943781794875038280439048452211550030010n.jpg"
+                alt="OFF-white Red Edition"
+                draggable="false"
+              />
             </div>
             <div class="product-info">
               <h2>Nike X OFF-white</h2>
@@ -65,7 +87,7 @@ function HomePage() {
               <div class="price">$999</div>
             </div>
             <div class="btn">
-              <button class="buy-btn">Купить сейчас </button>
+              <button class="buy-btn">Подробнее</button>
               <button class="fav">
                 {" "}
                 <AddShoppingCartIcon />
@@ -73,6 +95,7 @@ function HomePage() {
             </div>
           </section>
         </main>
+
         <div className="target_lineee">
           <span className="target-lineee_span"></span>
         </div>

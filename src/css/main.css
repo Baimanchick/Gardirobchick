@@ -12,6 +12,10 @@ body {
   margin: 20px auto;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* card */
 *,
 ::before,
@@ -104,7 +108,7 @@ a {
 }
 .price {
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: bolder;
 }
 .btn {
   display: flex;
@@ -119,8 +123,24 @@ a {
   font-size: 1rem;
   transition: 300ms ease;
 }
+
+.buy-btnn {
+  background-color: var(--btn);
+  width: 168px;
+  height: 35px;
+  margin-left: 37px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: 300ms ease;
+}
+
 .buy-btn:hover {
-  color: cornflowerblue;
+  background-color: rgb(253, 56, 56);
+}
+
+.buy-btnn:hover {
+  background-color: rgb(255, 120, 120);
 }
 
 .fav {
@@ -151,7 +171,7 @@ a {
   fill: #000;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
   body {
     height: auto;
   }
@@ -160,5 +180,25 @@ a {
     width: 100%;
     flex-direction: column;
     gap: 3rem;
+  }
+  .card {
+    width: 300px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  }
+  .buy-btn {
+    width: 30px;
+  }
+  .btn button {
+    display: flex;
+    justify-content: center;
+  }
+  .buy-btnn {
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    width: 260px;
   }
 }

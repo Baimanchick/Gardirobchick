@@ -76,6 +76,7 @@ a {
 .second-navbar {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .second-navigation {
@@ -87,8 +88,9 @@ a {
   font-weight: 600;
 }
 
-.second-navigation li {
+.second-navigation__itemm {
   list-style: none;
+  font-size: x-large;
 }
 
 .main-logo {
@@ -101,6 +103,10 @@ a {
 .main-thing {
   display: flex;
   gap: 15px;
+}
+
+a {
+  color: #242424;
 }
 
 .main-title {
@@ -120,4 +126,52 @@ a {
   width: 100%;
   height: 5px;
   margin: 70px;
+}
+
+.fashion {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .second-navigation {
+    margin-left: 0px;
+  }
+  .main-title {
+    margin-left: 0px;
+  }
+  .second-navbar {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container-navbar {
+    display: flex;
+    flex-direction: column;
+  }
+  .navigation {
+    margin-right: 0px;
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+  }
+  .input-navbar {
+    margin: 25px 0px 20px 0px;
+  }
+  .second-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    /* margin-right: 20px; */
+    margin-top: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+  }
+  .second-navigation__itemm {
+    margin-left: 19px;
+  }
 }
