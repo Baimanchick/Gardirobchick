@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../css/main.css";
 import "../css/home.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -7,11 +7,76 @@ import CheckroomIcon from "@mui/icons-material/Checkroom";
 import check from "../css/images/1.jpg";
 import Footer from "../components/Footer";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { useProductContext } from "../context/MainProductContext";
+import { Box, Pagination } from "@mui/material";
+import { LIMIT } from "../utils/consts";
 
 function HomePage() {
+  const { products, getProducts, pageTotalCount, deleteProduct } =
+    useProductContext();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [inputVal, setInputVal] = useState(
+    searchParams.get("title_like") || ""
+  );
+  const [category, setCategory] = useState(
+    searchParams.get("category") || "all"
+  );
+  const [page, setPage] = useState(+searchParams.get("_page") || 1);
+
+  useEffect(() => {
+    getProducts();
+  }, [searchParams]);
+
+  const [firstMount, setFirstMount] = useState(true);
+
+  useEffect(() => {
+    if (firstMount) {
+      setFirstMount(false);
+      return;
+    }
+    if (category === "all") {
+      setSearchParams({
+        title_like: inputVal,
+        _limit: LIMIT,
+        _page: 1,
+      });
+    } else {
+      setSearchParams({
+        title_like: inputVal,
+        category: category,
+        _limit: LIMIT,
+        _page: 1,
+      });
+    }
+    setPage(1);
+  }, [inputVal, category]);
+
+  useEffect(() => {
+    if (category === "all") {
+      setSearchParams({
+        title_like: inputVal,
+        _limit: LIMIT,
+        _page: page,
+      });
+    } else {
+      setSearchParams({
+        title_like: inputVal,
+        category: category,
+        _limit: LIMIT,
+        _page: page,
+      });
+    }
+  }, [page]);
+
+  useEffect(() => {
+    if (pageTotalCount < page) {
+      setPage(pageTotalCount);
+    }
+  }, [pageTotalCount]);
+
   const naivigate = useNavigate();
 
   return (
@@ -73,28 +138,44 @@ function HomePage() {
 
         {/*  */}
         <main class="container">
-          <section onClick={() => naivigate("/details")} class="card">
-            <div class="product-image">
-              <img
-                src="https://isabelgarcia.by/wp-content/uploads/2020/12/fiolet_by_1308943781794875038280439048452211550030010n.jpg"
-                alt="OFF-white Red Edition"
-                draggable="false"
-              />
-            </div>
-            <div class="product-info">
-              <h2>Nike X OFF-white</h2>
-              <p>The 10: Air Jordan 1 off-white - Chicago</p>
-              <div class="price">$999</div>
-            </div>
-            <div class="btn">
-              <button class="buy-btn">Подробнее</button>
-              <button class="fav">
-                {" "}
-                <AddShoppingCartIcon />
-              </button>
-            </div>
-          </section>
+          {products.map((item) => {
+            return (
+              <section class="card">
+                <div class="product-image">
+                  <img
+                    src={`${item.image}`}
+                    alt="OFF-white Red Edition"
+                    draggable="false"
+                    onClick={() => naivigate(`/details/${item.id}`)}
+                  />
+                </div>
+                <div class="product-info">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                  <div class="price">${item.price}</div>
+                </div>
+                <div class="btn">
+                  <button class="buy-btn" onClick={() => naivigate("/details")}>
+                    Подробнее
+                  </button>
+                  <button class="fav">
+                    {" "}
+                    <AddShoppingCartIcon />
+                  </button>
+                </div>
+              </section>
+            );
+          })}
         </main>
+
+        <Box sx={{ maxWidth: "max-content", margin: "20px auto" }}>
+          <Pagination
+            onChange={(e, p) => setPage(p)}
+            page={page}
+            count={pageTotalCount}
+            color="primary"
+          />
+        </Box>
 
         <div className="target_lineee">
           <span className="target-lineee_span"></span>

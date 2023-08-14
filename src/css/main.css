@@ -97,7 +97,7 @@ a {
   transform: translate(-1.5rem, -7rem) rotate(-20deg);
 } */
 
-.product-info h2 {
+.product-info h3 {
   font-size: 1.4rem;
   font-weight: 600;
 }

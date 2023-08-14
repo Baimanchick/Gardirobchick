@@ -15,7 +15,7 @@ function MainRoutes() {
       <Route element={<MainLayouts />}></Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/cart" element={<CartPage />} />
-      <Route path="/details" element={<ProductDetail />} />
+      <Route path="/details/:id" element={<ProductDetail />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/auth" element={<AuthPage />} />
       <Route path="*" element={<NotFounedPage />} />

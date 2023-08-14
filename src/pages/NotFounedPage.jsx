@@ -9,7 +9,7 @@ function NotFounedPage() {
     <>
       <div className="tipo navbar">
         <KeyboardBackspaceIcon
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           style={{ fontSize: "60px" }}
         />
       </div>
